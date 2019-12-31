@@ -36,8 +36,14 @@ Clean up:
 
 Youtube demo:
 
-[![Alt text](https://img.youtube.com/vi/VID/0.jpg)](https://youtu.be/EXSq7ACueHE)
+[![Alt text](http://i3.ytimg.com/vi/EXSq7ACueHE/hqdefault.jpg)](https://youtu.be/EXSq7ACueHE)
 
 Terminal demo:
 
 [![asciicast](https://asciinema.org/a/BknVZnVlfvwdXSlPd62zV85Ae.svg)](https://asciinema.org/a/BknVZnVlfvwdXSlPd62zV85Ae)
+
+Bonus:
+
+If you want for example 5 web containers instead the default number of 2, just execute terraform apply in this way:
+
+`terraform apply -var instances_number="5"`

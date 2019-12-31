@@ -6,7 +6,7 @@ resource "docker_network" "private_network" {
 # Create web containers
 resource "docker_container" "web" {
   # This will create n instances of nginx container
-  count = 4
+  count = "${var.instances_number}"
 
   name = "web-${format("%02d", count.index+1)}"
   image = "${docker_image.nginx.name}"
@@ -16,13 +16,13 @@ resource "docker_container" "web" {
   }
 
   ports {
-    internal = 80
+    internal = "${var.container_int_port}"
     external = "${8081 + count.index}"
   }
 
   upload {
     content = "<html><h1>Hello from web-${format("%02d", count.index+1)}</h1></html>"
-    file = "/usr/share/nginx/html/index.html"
+    file = "${var.index_html_path_destination}"
   }
 }
 
@@ -32,26 +32,22 @@ resource "docker_container" "lb" {
 
   name = "nginx-lb"
   image = "${docker_image.nginx.name}"
-  #command = ["rm", "/etc/nginx/sites-enabled/default"]
-  #command = ["mv", "/etc/nginx/conf.d/default.conf", "/etc/nginx/conf.d/default.conf.disabled"]
-  #restart = "always"
 
   networks_advanced {
     name = "${docker_network.private_network.name}"
   }
 
   ports {
-    internal = 80
-    external = 8080
+    internal = "${var.lb_int_port}"
+    external = "${var.lb_ext_port}"
   }
 
   upload {
     content = "${data.template_file.load-balancer.rendered}"
-    file = "/etc/nginx/nginx.conf"
+    file = "${var.nginx_conf_path_destination}"
   }
-  
 }
 
 resource "docker_image" "nginx" {
-  name = "nginx:1.17.6"
+  name = "${var.nginx_image_version}"
 }
