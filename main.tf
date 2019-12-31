@@ -55,14 +55,3 @@ resource "docker_container" "lb" {
 resource "docker_image" "nginx" {
   name = "nginx:1.17.6"
 }
-
-#resource "template_file" "nginx_config" {
-  #template = "${file("${path.module}/load-balancer.conf")}"
-  #vars {
-    #web_ip_list = "${join(",", docker_container.web.*.ip_address)}"
-  #}
-#}
-
-output "ips" {
-  value = "${join(",", docker_container.web.*.ip_address)}"
-}
