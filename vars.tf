@@ -28,8 +28,13 @@ variable "nginx_conf_path_destination" {
   default     = "/etc/nginx/nginx.conf"
 }
 
+variable "nginx_image_name" {
+  description = "Nginx image name"
+  default     = "nginx"
+}
+
 variable "nginx_image_version" {
   description = "Nginx image version. latest is an antipattern"
-  default     = "nginx:1.17.6"
+  default     = "1.17.5"
 }
 

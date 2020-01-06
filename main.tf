@@ -49,5 +49,8 @@ resource "docker_container" "lb" {
 }
 
 resource "docker_image" "nginx" {
-  name = "${var.nginx_image_version}"
+  #name = "${var.nginx_image_name}":"${var.nginx_image_version}"
+  #name = "${lookup(var.nginx_image_name, var.nginx_image_version)}"
+  #name = "${concat(var.nginx_image_name, ":", var.nginx_image_version)}"
+  name = "${var.nginx_image_name}:${var.nginx_image_version}"
 }
