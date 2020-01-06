@@ -8,19 +8,14 @@ variable "instances_number" {
  default = 2
 }
 
-variable "lb_int_port" {
-  description = "Internal port for LB."
+variable "int_port" {
+  description = "Internal port for containers and LB"
   default     = "80"
 }
 
 variable "lb_ext_port" {
   description = "External port for LB."
   default     = "8080"
-}
-
-variable "container_int_port" {
-  description = "Internal port for containers."
-  default     = "80"
 }
 
 variable "index_html_path_destination" {

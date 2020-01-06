@@ -16,8 +16,8 @@ resource "docker_container" "web" {
   }
 
   ports {
-    internal = "${var.container_int_port}"
-    external = "${8081 + count.index}"
+    internal = "${var.int_port}"
+    external = "${var.lb_ext_port + 1 + count.index}"
   }
 
   upload {
@@ -38,7 +38,7 @@ resource "docker_container" "lb" {
   }
 
   ports {
-    internal = "${var.lb_int_port}"
+    internal = "${var.int_port}"
     external = "${var.lb_ext_port}"
   }
 
