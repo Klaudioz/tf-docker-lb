@@ -21,7 +21,7 @@ Apply the changes if wasn't any error in the previous step:
 
 There are two ways to check if the load balancer is working: 
 
-- Go to your browser and load the following URL and refresh it several times: http://localhost:8080
+- Go to your browser and load the following URL and refresh it several times: http://localhost:8080 (prod), http://localhost:8180 (stage) 
 (using Chrome Version 79.0.3945.88 I always get "Hello from web-01" but using Safari Version 13.0.3 I can see the message changing everytime.)
 
 - Or (my prefered way to do it) run this command in your terminal:
