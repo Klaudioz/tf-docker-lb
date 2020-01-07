@@ -1,10 +1,10 @@
 variable "network_name" {
  description = "Human friendly private network name"
- default = "my_network"
+ default = "webserver-network"
 }
 
 variable "instances_number" {
- description = "Number of docker containers which will be behing the LB"
+ description = "Number of docker containers which will be behind the LB"
  default = 2
 }
 
@@ -36,5 +36,9 @@ variable "nginx_image_name" {
 variable "nginx_image_version" {
   description = "Nginx image version. latest is an antipattern"
   default     = "1.17.5"
+}
+
+variable "environment_name" {
+  description = "Variable used to set part of the name of containers and LB"
 }
 

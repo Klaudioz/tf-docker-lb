@@ -8,7 +8,7 @@ resource "docker_container" "web" {
   # This will create n instances of nginx container
   count = "${var.instances_number}"
 
-  name = "web-${format("%02d", count.index+1)}"
+  name = "${var.environment_name}-web-${format("%02d", count.index+1)}"
   image = "${docker_image.nginx.name}"
 
   networks_advanced {
@@ -30,7 +30,7 @@ resource "docker_container" "web" {
 resource "docker_container" "lb" {
   depends_on = ["docker_container.web"]
 
-  name = "nginx-lb"
+  name = "${var.environment_name}-nginx-lb"
   image = "${docker_image.nginx.name}"
 
   networks_advanced {
