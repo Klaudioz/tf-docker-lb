@@ -13,3 +13,7 @@ output "load_balancer_ip" {
 output "load_balancer_name" {
   value = "${join(",", docker_container.lb.*.name)}"
 }
+
+output "nginx_image_name" {
+  value = "${var.nginx_image_name}:${var.nginx_image_version}"
+}
