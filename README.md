@@ -9,6 +9,8 @@ For this demostration I used Terraform v0.11.11 and Docker version 19.03.5 using
 
 ## Terraform
 
+There are two folders were you can create the infrastructure (stage and prod), choose any of these and follow the steps:
+
 Checking if everything is OK:
 
 `terraform plan`
@@ -24,7 +26,7 @@ There are two ways to check if the load balancer is working:
 
 - Or (my prefered way to do it) run this command in your terminal:
 
-`for ((i=1;i<=10;i++)); do curl localhost:8080; printf '%s\n'; done`
+`for ((i=1;i<=10;i++)); do curl localhost:port; printf '%s\n'; done` (change for the port of every environment 8080 for prod, 8180 for stage or if you use any particular one)
 
 Verify the containers are running:
 
@@ -42,8 +44,14 @@ Terminal demo:
 
 [![asciicast](https://asciinema.org/a/BknVZnVlfvwdXSlPd62zV85Ae.svg)](https://asciinema.org/a/BknVZnVlfvwdXSlPd62zV85Ae)
 
+You can run both environment at the same time. Both are isolated and using different docker networks. Also, you can create new folders for new environments using the module created.
+
 Bonus:
 
 If you want for example 5 web containers instead the default number of 2, just execute terraform apply in this way:
 
 `terraform apply -var instances_number="5"`
+
+Or you want to use a different version of nginx:
+
+`terraform apply -var nginx_image_version="1.17.6"`
